@@ -5,7 +5,7 @@ const macd = require('./indicators/macd.js')
 const mfi = require('./indicators/mfi.js')
 const obv = require('./indicators/obv.js')
 const getOHLCV = require('./indicators/ohlcv.js')
-const source = require('./indicators/source.js')
+const detachSource = require('./indicators/source.js')
 const rsi = require('./indicators/rsi.js')
 const sma = require('./indicators/sma.js')
 const stochasticRSI = require('./indicators/stochasticrsi.js')
@@ -17,6 +17,7 @@ module.exports = {
     bb: bb,
     ema: ema,
     getOHLCV: getOHLCV,
+    detachSource: detachSource,
     ichimokuCloud: ichimokuCloud,
     macd: macd,
     mfi: mfi,

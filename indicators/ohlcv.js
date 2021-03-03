@@ -1,5 +1,5 @@
 const ccxt = require("ccxt")
-const getOHLCV = async (ex, ticker, interval, isFuture = false) => {
+const getOHLCV = async (ex, ticker, interval, isFuture = false, limit = 500) => {
     if (!ccxt.exchanges.includes(ex)) {
 
         throw ('Exchange is not supported')
@@ -13,13 +13,13 @@ const getOHLCV = async (ex, ticker, interval, isFuture = false) => {
 
             exchange = new exchangeClass({
                 options: {
-                    defaultMarket: 'future'
+                    defaultType: 'future'
                 }
             })
         } else {
             exchange = new exchangeClass({})
         }
-        return await exchange.fetchOHLCV(ticker, interval)
+		return await exchange.fetchOHLCV(ticker, interval, undefined, limit);
     } catch (err) {
         throw ('Ticker is not supported')
     }

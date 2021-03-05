@@ -2,10 +2,12 @@ const getOHLCV = require('./ohlcv.js')
 const detachSource = require('./source.js')
 const indicators = require('technicalindicators')
 
-const rsi = async (rsiLength, sourceType, ex, ticker, interval, isFuture = false, limit = 500) => {
+const rsi = async (rsiLength, sourceType, ex, ticker, interval, isFuture = false, limit = 500, source = []) => {
     try {
-        let ohlcv = await getOHLCV(ex, ticker, interval, isFuture, limit)
-        let source = detachSource(ohlcv)
+        if (source['open'] == undefined){
+            let ohlcv = await getOHLCV(ex, ticker, interval, isFuture, limit)
+            source = detachSource(ohlcv)
+        }
         let rsiInput = {
             values: source[sourceType],
             period: rsiLength

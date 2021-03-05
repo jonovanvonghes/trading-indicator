@@ -5,7 +5,6 @@ const indicators = require('technicalindicators')
 const ema = async (emaLength, sourceType, ex, ticker, interval, isFuture = false, limit = 500, source = []) => {
     try {
         if (source['open'] == undefined){
-            console.log('source : ', source);
             let ohlcv = await getOHLCV(ex, ticker, interval, isFuture, limit)
             source = detachSource(ohlcv)
         }
